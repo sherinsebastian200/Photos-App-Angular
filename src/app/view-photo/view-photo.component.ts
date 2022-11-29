@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-view-photo',
@@ -6,7 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./view-photo.component.css']
 })
 export class ViewPhotoComponent {
-  
+
+ constructor(private api:ApiService){
+    api.fetchCourses().subscribe(
+      (response)=>
+      {
+        this.photos=response;
+      }
+
+    )
+  }
   photos:any=[]
 
 }
